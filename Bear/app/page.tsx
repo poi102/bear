@@ -219,7 +219,7 @@ export default function Home() {
     <main className="bear-page flex-1">
       <section className="mx-auto flex min-h-screen w-full max-w-[1600px] flex-col px-2 py-3 sm:px-3 sm:py-4 lg:px-4 lg:py-4">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-3xl">
+          <div className="hero-copy max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.32em] text-amber-900/70">
               Bear Motion Collection
             </p>

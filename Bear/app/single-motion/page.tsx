@@ -240,7 +240,7 @@ export default function SingleMotionPage() {
     <main className="bear-page flex-1">
       <section className="mx-auto flex min-h-screen w-full max-w-[1600px] flex-col px-3 py-4 sm:px-4 sm:py-5 lg:px-6 lg:py-6">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-3xl">
+          <div className="hero-copy max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.32em] text-blue-900/70">
               Single Character
             </p>
