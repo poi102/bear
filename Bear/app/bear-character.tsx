@@ -15,6 +15,7 @@ type BearCharacterProps = {
   size?: number;
   className?: string;
   animated?: boolean;
+  gazeAnimated?: boolean;
   palette?: "brown" | "gray" | "white";
 };
 
@@ -55,6 +56,7 @@ export default function BearCharacter({
   size = 280,
   className = "",
   animated = false,
+  gazeAnimated = false,
   palette = "brown",
 }: BearCharacterProps) {
   const colors = palettes[palette];
@@ -76,6 +78,14 @@ export default function BearCharacter({
             25% { transform: translateY(-4px) scaleY(1.02) scaleX(0.99); }
             50% { transform: translateY(-8px) scaleY(0.98) scaleX(1.02); }
             100% { transform: translateY(0px) scaleY(1) scaleX(1); }
+          }
+
+          @keyframes bearGaze {
+            0% { transform: translateX(-4px); }
+            25% { transform: translateX(-1px); }
+            50% { transform: translateX(4px); }
+            75% { transform: translateX(1px); }
+            100% { transform: translateX(-4px); }
           }
         `}
       </style>
@@ -198,8 +208,19 @@ export default function BearCharacter({
         />
         <ellipse cx="139" cy="140" rx="11" ry="7" fill="#ffffff" opacity="0.3" />
 
-        <circle cx="124" cy="126" r="6.5" fill={colors.outline} />
-        <circle cx="176" cy="126" r="6.5" fill={colors.outline} />
+        <g
+          style={
+            gazeAnimated
+              ? {
+                  animation: "bearGaze 2.2s ease-in-out infinite",
+                  transformOrigin: "150px 126px",
+                }
+              : undefined
+          }
+        >
+          <circle cx="124" cy="126" r="6.5" fill={colors.outline} />
+          <circle cx="176" cy="126" r="6.5" fill={colors.outline} />
+        </g>
 
         <ellipse cx="150" cy="137" rx="8.5" ry="6.8" fill={colors.outline} />
 

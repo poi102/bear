@@ -19,43 +19,43 @@ const singleMotionIdeas: Array<{
   variant: SingleMotionVariant;
 }> = [
   {
-    title: "ぽよんと上下に跳ねる",
-    note: "弾むような軽い動きで、何度も上下に弾む。",
+    title: "ぴょんと上に跳ねる",
+    note: "軽やかなリズムで上に跳ねる、基本のジャンプモーションです。",
     variant: "bouncy_jump",
   },
   {
-    title: "つぶれて元に戻る",
-    note: "着地時に縦方向を圧縮して、その後元に戻る動き。",
+    title: "つぶれてから戻る",
+    note: "体がぎゅっと縮んでから、やわらかく元に戻ります。",
     variant: "squash_stretch",
   },
   {
-    title: "ぷるぷる震える",
-    note: "小さな振動を繰り返して、震えている様子を表現。",
+    title: "ふるふる震える",
+    note: "小さな揺れと回転で、落ち着かない震え方を見せます。",
     variant: "quiver",
   },
   {
-    title: "ゆっくり膨らんで戻る",
-    note: "じっくり時間をかけて大きくなり、ゆっくり元に戻る。",
+    title: "ゆっくりふくらむ",
+    note: "ゆっくり大きくなって、自然に元の大きさへ戻ります。",
     variant: "slow_expand",
   },
   {
     title: "横に転がる",
-    note: "横方向へ回転しながら移動する動き。",
+    note: "ころんと横へ転がって移動する、遊びのあるモーションです。",
     variant: "roll_sideways",
   },
   {
     title: "びっくりして縮む",
-    note: "目にも止まらぬ速さで急激に小さくなる。",
+    note: "驚いたように一瞬きゅっと縮んでから、元に戻ります。",
     variant: "shocked_shrink",
   },
   {
     title: "ふわっと浮いて落ちる",
-    note: "軽く浮き上がって、ゆっくり落ちてくる動き。",
+    note: "やさしく浮かび上がって、やわらかく着地する動きです。",
     variant: "float_fall",
   },
   {
     title: "目線だけ左右に動く",
-    note: "体は動かず、目線だけが左右にきょろきょろ動く。",
+    note: "体はそのままで、目線だけが左右に移るモーションです。",
     variant: "eye_gaze",
   },
 ];
@@ -216,21 +216,7 @@ function SingleMotionPreview({ variant }: { variant: SingleMotionVariant }) {
 
   return (
     <div className="flex items-end justify-center">
-      <motion.div
-        animate={{
-          x: [-8, -2, 8, 2, -8],
-          y: [0, -2, 0, -2, 0],
-          rotate: [-1.5, -0.5, 1.5, 0.5, -1.5],
-        }}
-        transition={{
-          duration: 2.0,
-          repeat: Number.POSITIVE_INFINITY,
-          times: [0, 0.24, 0.5, 0.76, 1],
-          ease: "easeInOut",
-        }}
-      >
-        <BearCharacter size={160} palette="brown" />
-      </motion.div>
+      <BearCharacter size={160} palette="brown" gazeAnimated />
     </div>
   );
 }
@@ -238,66 +224,25 @@ function SingleMotionPreview({ variant }: { variant: SingleMotionVariant }) {
 export default function SingleMotionPage() {
   return (
     <main className="bear-page flex-1">
-      <section className="mx-auto flex min-h-screen w-full max-w-[1600px] flex-col px-3 py-4 sm:px-4 sm:py-5 lg:px-6 lg:py-6">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="hero-copy max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-blue-900/70">
-              Single Character
-            </p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
-              1体のアニメーション
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-stone-700 sm:text-lg">
-              1体のキャラクターが単独で表現するリアクションやモーションの見本です。
-              リズミカルな動きから感情表現まで、様々なアニメーション効果を集めました。
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-5 grid gap-4">
-          <section className="rounded-[2rem] border border-white/65 bg-white/80 p-4 shadow-[0_30px_80px_rgba(88,55,24,0.12)] backdrop-blur sm:p-5">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
-                  Single Motion Ideas
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold text-stone-950">
-                  1体モーション例
-                </h2>
+      <section className="mx-auto w-full max-w-[1400px] px-3 py-6 sm:px-4 sm:py-8 lg:px-6 lg:py-10">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {singleMotionIdeas.map((scene) => (
+            <article
+              key={scene.title}
+              className="overflow-hidden rounded-[1.5rem] bg-white shadow-none"
+            >
+              <div className="flex min-h-[20rem] items-end justify-center rounded-t-[1.5rem] bg-[#efe6da] p-4 sm:min-h-[22rem] sm:p-5">
+                <div className="motion-preview motion-preview-single">
+                  <SingleMotionPreview variant={scene.variant} />
+                </div>
               </div>
-              <div className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-950">
-                8 Ideas
+
+              <div className="rounded-b-[1.5rem] bg-white px-5 py-4">
+                <h2 className="text-xl font-semibold text-stone-900">{scene.title}</h2>
+                <p className="mt-2 text-sm leading-7 text-stone-600">{scene.note}</p>
               </div>
-            </div>
-
-            <div className="mt-5 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
-              {singleMotionIdeas.map((scene) => (
-                <article
-                  key={scene.title}
-                  className="relative overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-stone-50 p-4 sm:p-5"
-                >
-                  <div className="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.15),_transparent_72%)]" />
-                  <div className="relative flex h-full flex-col">
-                    <div className="flex items-center justify-between text-sm text-stone-500">
-                      <span>Single Motion</span>
-                      <span className="rounded-full bg-stone-900 px-3 py-1 text-xs font-semibold tracking-[0.2em] text-stone-50">
-                        1 Body
-                      </span>
-                    </div>
-
-                    <div className="relative mt-4 flex min-h-[18rem] items-end justify-center overflow-hidden rounded-3xl border border-dashed border-stone-300 bg-[linear-gradient(180deg,_rgba(255,255,255,0.88),_rgba(245,240,232,0.92))] p-3 sm:min-h-[20rem] sm:p-4">
-                      <div className="motion-preview motion-preview-single">
-                        <SingleMotionPreview variant={scene.variant} />
-                      </div>
-                    </div>
-
-                    <h3 className="mt-5 text-xl font-semibold text-stone-900">{scene.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-stone-600">{scene.note}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
+            </article>
+          ))}
         </div>
       </section>
     </main>

@@ -4,13 +4,11 @@ import { motion } from "framer-motion";
 import BearCharacter from "../bear-character";
 
 type TrioVariant =
-  | "sequence_jump"
   | "domino_fall"
   | "stack_up"
   | "triangle_spin"
   | "one_offbeat"
   | "all_bounce"
-  | "wave_sway"
   | "middle_squash"
   | "swap_places"
   | "merge_split"
@@ -23,95 +21,59 @@ const trioMotionIdeas: Array<{
   variant: TrioVariant;
 }> = [
   {
-    title: "順番にジャンプする",
-    note: "左から右へ順番に跳ねて、リズム感を見せるモーションです。",
-    variant: "sequence_jump",
-  },
-  {
     title: "ドミノのように倒れる",
-    note: "1体ずつ傾いていく、コミカルな倒れ方の見本です。",
+    note: "3体が順番に傾いて、やわらかなドミノのように倒れていきます。",
     variant: "domino_fall",
   },
   {
-    title: "積み上がる",
-    note: "3体が縦に重なって、協力しているように見える構図です。",
+    title: "積み重なる",
+    note: "3体が寄り集まって、バランスを取りながら重なります。",
     variant: "stack_up",
   },
   {
-    title: "三角配置で回転する",
-    note: "三角形を保ったまま回って、グループ感を出します。",
+    title: "三角形で回る",
+    note: "三角形の並びを保ったまま、ひとまとまりで回転します。",
     variant: "triangle_spin",
   },
   {
-    title: "1体だけズレる",
-    note: "2体はそろって動き、1体だけ少し遅れて外す演出です。",
+    title: "1体だけずれる",
+    note: "1体だけ少し違うリズムで動き、全体に変化をつけます。",
     variant: "one_offbeat",
   },
   {
-    title: "全員同時にバウンドする",
-    note: "3体が同時に弾んで、シンプルに気持ちよく見せます。",
+    title: "みんなでバウンドする",
+    note: "3体が同時に弾み、元気のあるまとまった動きになります。",
     variant: "all_bounce",
   },
   {
-    title: "波のように順番に揺れる",
-    note: "左から右へ揺れが伝わる、波打つような流れです。",
-    variant: "wave_sway",
-  },
-  {
-    title: "真ん中がつぶれる",
-    note: "両端に挟まれて中央だけがむにっとつぶれる表現です。",
+    title: "真ん中だけつぶれる",
+    note: "中央の1体がつぶれ、左右の2体が少しだけ反応します。",
     variant: "middle_squash",
   },
   {
     title: "位置を入れ替える",
-    note: "3体が横位置を交換して、にぎやかに見せる動きです。",
+    note: "3体が順番に位置を入れ替えながら循環します。",
     variant: "swap_places",
   },
   {
-    title: "合体して大きくなってから分かれる",
-    note: "中心へ寄って一瞬まとまり、再び3体へ戻る演出です。",
+    title: "集まってから分かれる",
+    note: "中央へ集まったあと、外側へ分かれて戻ります。",
     variant: "merge_split",
   },
   {
-    title: "順番に転がる",
-    note: "回転と横移動を組み合わせて、リレーのように流れます。",
+    title: "リレーのように転がる",
+    note: "動きが1体ずつ受け渡されるように、順番に転がっていきます。",
     variant: "roll_relay",
   },
   {
-    title: "全員同時に縮む",
-    note: "驚いたように全員がきゅっと縮むリアクションです。",
+    title: "みんなで縮む",
+    note: "3体が同時にきゅっと縮んで、そろって戻るモーションです。",
     variant: "all_shrink",
   },
 ];
 
 function TrioPreview({ variant }: { variant: TrioVariant }) {
   const palettes = ["gray", "brown", "white"] as const;
-
-  if (variant === "sequence_jump") {
-    return (
-      <div className="flex items-end justify-center gap-2">
-        {palettes.map((palette, index) => (
-          <motion.div
-            key={palette}
-            animate={{
-              y: [0, 10, -30, -10, 0],
-              scaleX: [1, 1.05, 0.96, 1.02, 1],
-              scaleY: [1, 0.91, 1.07, 0.98, 1],
-            }}
-            transition={{
-              duration: 1.6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              times: [0, 0.18, 0.46, 0.74, 1],
-              delay: index * 0.18,
-            }}
-          >
-            <BearCharacter size={132} palette={palette} />
-          </motion.div>
-        ))}
-      </div>
-    );
-  }
 
   if (variant === "domino_fall") {
     return (
@@ -245,31 +207,6 @@ function TrioPreview({ variant }: { variant: TrioVariant }) {
     );
   }
 
-  if (variant === "wave_sway") {
-    return (
-      <div className="flex items-end justify-center gap-2">
-        {palettes.map((palette, index) => (
-          <motion.div
-            key={palette}
-            animate={{
-              rotate: [-8, 8, -8],
-              y: [0, -8, 0],
-              scaleY: [1, 1.02, 1],
-            }}
-            transition={{
-              duration: 2.2,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: index * 0.16,
-            }}
-          >
-            <BearCharacter size={128} palette={palette} />
-          </motion.div>
-        ))}
-      </div>
-    );
-  }
-
   if (variant === "middle_squash") {
     return (
       <div className="flex items-end justify-center gap-1">
@@ -319,7 +256,7 @@ function TrioPreview({ variant }: { variant: TrioVariant }) {
       <div className="relative h-[15rem] w-full">
         {[
           { palette: "gray" as const, x: [-64, 0, -64] },
-          { palette: "brown" as const, x: [0, 0, 0], size: [118, 156, 118] },
+          { palette: "brown" as const, x: [0, 0, 0] },
           { palette: "white" as const, x: [64, 0, 64] },
         ].map((item) => (
           <motion.div
@@ -387,66 +324,25 @@ function TrioPreview({ variant }: { variant: TrioVariant }) {
 export default function TrioMotionPage() {
   return (
     <main className="bear-page flex-1">
-      <section className="mx-auto flex min-h-screen w-full max-w-[1600px] flex-col px-3 py-4 sm:px-4 sm:py-5 lg:px-6 lg:py-6">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="hero-copy max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-amber-900/70">
-              Trio Animations
-            </p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
-              3体のアニメーション
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-stone-700 sm:text-lg">
-              3体のキャラクターが組み合わさって見せるモーションの見本です。
-              リズム感や協力感、グループとしてのまとまり感を表現するアニメーション例を集めました。
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-5 grid gap-4">
-          <section className="rounded-[2rem] border border-white/65 bg-white/80 p-4 shadow-[0_30px_80px_rgba(88,55,24,0.12)] backdrop-blur sm:p-5">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
-                  Trio Motion Ideas
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold text-stone-950">
-                  3体モーション例
-                </h2>
+      <section className="mx-auto w-full max-w-[1400px] px-3 py-6 sm:px-4 sm:py-8 lg:px-6 lg:py-10">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {trioMotionIdeas.map((scene) => (
+            <article
+              key={scene.title}
+              className="overflow-hidden rounded-[1.5rem] bg-white shadow-none"
+            >
+              <div className="flex min-h-[20rem] items-end justify-center rounded-t-[1.5rem] bg-[#efe6da] p-4 sm:min-h-[22rem] sm:p-5">
+                <div className="motion-preview motion-preview-trio">
+                  <TrioPreview variant={scene.variant} />
+                </div>
               </div>
-              <div className="rounded-full bg-amber-100 px-4 py-2 text-sm font-medium text-amber-950">
-                12 Ideas
+
+              <div className="rounded-b-[1.5rem] bg-white px-5 py-4">
+                <h2 className="text-xl font-semibold text-stone-900">{scene.title}</h2>
+                <p className="mt-2 text-sm leading-7 text-stone-600">{scene.note}</p>
               </div>
-            </div>
-
-            <div className="mt-5 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
-              {trioMotionIdeas.map((scene) => (
-                <article
-                  key={scene.title}
-                  className="relative overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-stone-50 p-4 sm:p-5"
-                >
-                  <div className="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.18),_transparent_72%)]" />
-                  <div className="relative flex h-full flex-col">
-                    <div className="flex items-center justify-between text-sm text-stone-500">
-                      <span>Trio Motion</span>
-                      <span className="rounded-full bg-stone-900 px-3 py-1 text-xs font-semibold tracking-[0.2em] text-stone-50">
-                        3 Body
-                      </span>
-                    </div>
-
-                    <div className="relative mt-4 flex min-h-[18rem] items-end justify-center overflow-hidden rounded-3xl border border-dashed border-stone-300 bg-[linear-gradient(180deg,_rgba(255,255,255,0.88),_rgba(245,240,232,0.92))] p-3 sm:min-h-[20rem] sm:p-4">
-                      <div className="motion-preview motion-preview-trio">
-                        <TrioPreview variant={scene.variant} />
-                      </div>
-                    </div>
-
-                    <h3 className="mt-5 text-xl font-semibold text-stone-900">{scene.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-stone-600">{scene.note}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
+            </article>
+          ))}
         </div>
       </section>
     </main>

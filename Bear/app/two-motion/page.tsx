@@ -22,52 +22,52 @@ const duoMotionIdeas: Array<{
 }> = [
   {
     title: "軽くぶつかる",
-    note: "左右から近づいて、軽く触れ合うモーション。",
+    note: "2体がやさしく近づいて、ふわっと触れるようにぶつかります。",
     variant: "light_collide",
   },
   {
-    title: "ぶつかって跳ね返る",
-    note: "衝突してから反対方向に飛び返る様子。",
+    title: "ぶつかって弾き返される",
+    note: "衝突のあとに、それぞれが軽く跳ね返る動きです。",
     variant: "bounce_back",
   },
   {
     title: "ぴたっとくっつく",
-    note: "お互いに引き寄せられてぴったり寄り添う。",
+    note: "近づいたあと、少しの間くっついたまま止まります。",
     variant: "stick_together",
   },
   {
-    title: "引き寄せ合う",
-    note: "磁力のように互いに吸い寄せられる動き。",
+    title: "引き寄せられる",
+    note: "中央へ吸い寄せられるように近づいてから戻ります。",
     variant: "pull_toward",
   },
   {
-    title: "回り合う",
-    note: "中心を軸に互いの周りを回転する。",
+    title: "まわりを回る",
+    note: "2体が共通の中心を意識しながら、くるっと回ります。",
     variant: "orbit",
   },
   {
     title: "同時にジャンプする",
-    note: "シンクロして上下に弾むモーション。",
+    note: "2体が同じタイミングでそろって跳ねるモーションです。",
     variant: "sync_jump",
   },
   {
-    title: "追いかけるように転がる",
-    note: "一方が他方を追うように回転しながら移動。",
+    title: "追いかけながら転がる",
+    note: "片方がもう片方を追いかけるように転がって動きます。",
     variant: "chase_roll",
   },
   {
-    title: "シンクロして伸び縮みする",
-    note: "同時に拡大と縮小を繰り返す。",
+    title: "同時にふくらむ",
+    note: "2体がそろってふくらみ、ゆっくり元に戻ります。",
     variant: "sync_expand",
   },
   {
-    title: "合体してから分かれる",
-    note: "一度中心で合わさってから離れていく。",
+    title: "集まってから離れる",
+    note: "中央へ寄ってから、また外側へ離れていく動きです。",
     variant: "merge_then_split",
   },
   {
     title: "一瞬重なって弾ける",
-    note: "重なった瞬間に反発して弾ける。",
+    note: "中央で一瞬重なったあと、勢いよく外側へ弾けます。",
     variant: "overlap_burst",
   },
 ];
@@ -343,21 +343,33 @@ function DuoPreview({ variant }: { variant: DuoVariant }) {
     <div className="flex items-end justify-center gap-1">
       <motion.div
         animate={{
-          y: [0, -8, -18, 0],
-          x: [0, -6, 6, 0],
-          scale: [1, 1.08, 1.18, 1],
+          x: [0, 20, 0, -10, 0],
+          y: [0, -2, -16, 0, 0],
+          scale: [1, 1.04, 1.18, 1, 1],
+          opacity: [1, 1, 0.88, 1, 1],
         }}
-        transition={{ duration: 1.7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        transition={{
+          duration: 1.8,
+          repeat: Number.POSITIVE_INFINITY,
+          times: [0, 0.32, 0.48, 0.72, 1],
+          ease: "easeInOut",
+        }}
       >
         <BearCharacter size={140} palette="gray" />
       </motion.div>
       <motion.div
         animate={{
-          y: [0, -8, -18, 0],
-          x: [0, 6, -6, 0],
-          scale: [1, 1.08, 1.18, 1],
+          x: [0, -20, 0, 10, 0],
+          y: [0, -2, -16, 0, 0],
+          scale: [1, 1.04, 1.18, 1, 1],
+          opacity: [1, 1, 0.88, 1, 1],
         }}
-        transition={{ duration: 1.7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        transition={{
+          duration: 1.8,
+          repeat: Number.POSITIVE_INFINITY,
+          times: [0, 0.32, 0.48, 0.72, 1],
+          ease: "easeInOut",
+        }}
       >
         <BearCharacter size={140} palette="brown" />
       </motion.div>
@@ -368,66 +380,25 @@ function DuoPreview({ variant }: { variant: DuoVariant }) {
 export default function TwoMotionPage() {
   return (
     <main className="bear-page flex-1">
-      <section className="mx-auto flex min-h-screen w-full max-w-[1600px] flex-col px-3 py-4 sm:px-4 sm:py-5 lg:px-6 lg:py-6">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="hero-copy max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-rose-900/70">
-              Duo Animations
-            </p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
-              2体のアニメーション
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-stone-700 sm:text-lg">
-              2体のキャラクターが相互に作用するモーションの見本です。
-              ぶつかる、くっつく、一緒に動くなど、関係性をあらわすアニメーションを集めました。
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-5 grid gap-4">
-          <section className="rounded-[2rem] border border-white/65 bg-white/80 p-4 shadow-[0_30px_80px_rgba(88,55,24,0.12)] backdrop-blur sm:p-5">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
-                  Duo Motion Ideas
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold text-stone-950">
-                  2体モーション例
-                </h2>
+      <section className="mx-auto w-full max-w-[1400px] px-3 py-6 sm:px-4 sm:py-8 lg:px-6 lg:py-10">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {duoMotionIdeas.map((scene) => (
+            <article
+              key={scene.title}
+              className="overflow-hidden rounded-[1.5rem] bg-white shadow-none"
+            >
+              <div className="flex min-h-[20rem] items-end justify-center rounded-t-[1.5rem] bg-[#efe6da] p-4 sm:min-h-[22rem] sm:p-5">
+                <div className="motion-preview motion-preview-duo">
+                  <DuoPreview variant={scene.variant} />
+                </div>
               </div>
-              <div className="rounded-full bg-rose-100 px-4 py-2 text-sm font-medium text-rose-950">
-                10 Ideas
+
+              <div className="rounded-b-[1.5rem] bg-white px-5 py-4">
+                <h2 className="text-xl font-semibold text-stone-900">{scene.title}</h2>
+                <p className="mt-2 text-sm leading-7 text-stone-600">{scene.note}</p>
               </div>
-            </div>
-
-            <div className="mt-5 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
-              {duoMotionIdeas.map((scene) => (
-                <article
-                  key={scene.title}
-                  className="relative overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-stone-50 p-4 sm:p-5"
-                >
-                  <div className="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,_rgba(244,63,94,0.15),_transparent_72%)]" />
-                  <div className="relative flex h-full flex-col">
-                    <div className="flex items-center justify-between text-sm text-stone-500">
-                      <span>Duo Motion</span>
-                      <span className="rounded-full bg-stone-900 px-3 py-1 text-xs font-semibold tracking-[0.2em] text-stone-50">
-                        2 Body
-                      </span>
-                    </div>
-
-                    <div className="relative mt-4 flex min-h-[18rem] items-end justify-center overflow-hidden rounded-3xl border border-dashed border-stone-300 bg-[linear-gradient(180deg,_rgba(255,255,255,0.88),_rgba(245,240,232,0.92))] p-3 sm:min-h-[20rem] sm:p-4">
-                      <div className="motion-preview motion-preview-duo">
-                        <DuoPreview variant={scene.variant} />
-                      </div>
-                    </div>
-
-                    <h3 className="mt-5 text-xl font-semibold text-stone-900">{scene.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-stone-600">{scene.note}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
+            </article>
+          ))}
         </div>
       </section>
     </main>
