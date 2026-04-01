@@ -5,7 +5,7 @@ import { BackgroundProvider } from "./components/BackgroundProvider";
 import Header from "./components/Header";
 
 export const metadata: Metadata = {
-  title: "クマが動くモーション集",
+  title: "うごくま",
   description: "クマのアニメーションを1体・2体・3体で見比べられるモーションギャラリー",
 };
 
