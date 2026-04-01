@@ -17,7 +17,7 @@ const backgroundModes = [
   { label: "Morning", value: "morning" as const },
   { label: "Evening", value: "day" as const },
   { label: "Night", value: "night" as const },
-  { label: "move", value: "move" as const },
+  { label: "Move", value: "move" as const },
 ];
 
 export default function Header() {
@@ -113,7 +113,7 @@ export default function Header() {
                 >
                   {mode.value === "move" ? (
                     <span className="relative flex items-center gap-2">
-                      <span>move</span>
+                      <span>Move</span>
                       <span className="h-1.5 w-12 overflow-hidden rounded-full bg-white/20">
                         <span
                           className="block h-full rounded-full bg-white/85 transition-[width]"
