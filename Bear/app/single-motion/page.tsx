@@ -224,20 +224,20 @@ function SingleMotionPreview({ variant }: { variant: SingleMotionVariant }) {
 export default function SingleMotionPage() {
   return (
     <main className="bear-page flex-1">
-      <section className="mx-auto w-full max-w-[1400px] px-3 py-6 sm:px-4 sm:py-8 lg:px-6 lg:py-10">
+      <section className="mx-auto w-full max-w-350 px-3 py-6 sm:px-4 sm:py-8 lg:px-6 lg:py-10">
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {singleMotionIdeas.map((scene) => (
             <article
               key={scene.title}
-              className="overflow-hidden rounded-[1.5rem] bg-white shadow-none"
+              className="overflow-hidden rounded-3xl bg-white shadow-none"
             >
-              <div className="flex min-h-[20rem] items-end justify-center rounded-t-[1.5rem] bg-[#efe6da] p-4 sm:min-h-[22rem] sm:p-5">
+              <div className="flex min-h-80 items-end justify-center rounded-t-3xl bg-[#efe6da] p-4 sm:min-h-88 sm:p-5">
                 <div className="motion-preview motion-preview-single">
                   <SingleMotionPreview variant={scene.variant} />
                 </div>
               </div>
 
-              <div className="rounded-b-[1.5rem] bg-white px-5 py-4">
+              <div className="rounded-b-3xl bg-white px-5 py-4">
                 <h2 className="text-xl font-semibold text-stone-900">{scene.title}</h2>
                 <p className="mt-2 text-sm leading-7 text-stone-600">{scene.note}</p>
               </div>

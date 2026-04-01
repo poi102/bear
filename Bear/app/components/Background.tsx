@@ -66,7 +66,7 @@ function MorningEffects() {
       {[0, 1, 2, 3].map((index) => (
         <motion.div
           key={`morning-wind-trail-${index}`}
-          className="absolute h-[2px] rounded-full bg-[linear-gradient(90deg,transparent,rgba(255,248,224,0.48),transparent)] blur-[1px]"
+          className="absolute h-0.5 rounded-full bg-[linear-gradient(90deg,transparent,rgba(255,248,224,0.48),transparent)] blur-[1px]"
           style={{
             left: `${4 + index * 22}%`,
             top: `${24 + index * 9}%`,
@@ -106,7 +106,7 @@ function MorningEffects() {
       />
 
       <motion.div
-        className="absolute left-[-16%] top-[8%] h-[32%] w-[72%] rotate-[-12deg] bg-[linear-gradient(90deg,transparent,rgba(255,247,214,0.08),rgba(255,247,214,0.22),rgba(255,250,236,0.12),transparent)] blur-3xl"
+        className="absolute left-[-16%] top-[8%] h-[32%] w-[72%] -rotate-12 bg-[linear-gradient(90deg,transparent,rgba(255,247,214,0.08),rgba(255,247,214,0.22),rgba(255,250,236,0.12),transparent)] blur-3xl"
         animate={{ x: ["-8%", "12%", "22%", "-5%"], opacity: [0.12, 0.24, 0.42, 0.16], scaleX: [0.94, 1.02, 1.08, 0.98] }}
         transition={{ duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
       />
@@ -306,7 +306,7 @@ function NightEffects() {
       />
 
       <motion.div
-        className="absolute right-[2%] top-[8%] h-[50%] w-[54%] rotate-[18deg] bg-[linear-gradient(180deg,rgba(226,238,255,0.24),rgba(174,208,255,0.12),transparent_80%)] blur-3xl"
+        className="absolute right-[2%] top-[8%] h-[50%] w-[54%] rotate-18 bg-[linear-gradient(180deg,rgba(226,238,255,0.24),rgba(174,208,255,0.12),transparent_80%)] blur-3xl"
         animate={{ opacity: [0.1, 0.24, 0.14], x: ["1%", "-1%", "0%"], y: ["0%", "2%", "0%"] }}
         transition={{ duration: 17, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
       />
