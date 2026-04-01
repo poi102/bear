@@ -15,7 +15,7 @@ const backgrounds = [
   {
     mode: "day",
     src: "/background/evening.png",
-    label: "DAY",
+    label: "Evening",
     imageClass: "forest-image forest-image-day",
     overlayClass:
       "bg-[linear-gradient(180deg,rgba(255,205,146,0.18)_0%,rgba(164,74,24,0.06)_46%,rgba(15,8,4,0.28)_100%)]",
