@@ -422,7 +422,7 @@ export default function ForestBackground() {
 
       <div className="absolute right-4 top-24 rounded-full border border-white/35 bg-black/18 px-3 py-2 text-[10px] font-semibold tracking-[0.28em] text-white shadow-[0_10px_32px_rgba(0,0,0,0.25)] sm:right-6 sm:top-6 sm:px-4 sm:text-xs">
         {selectedMode === "move"
-          ? `MOVE ${backgrounds.find((background) => background.mode === resolvedMode)?.label ?? ""}`
+          ? "move"
           : backgrounds.find((background) => background.mode === resolvedMode)?.label}
       </div>
     </div>
